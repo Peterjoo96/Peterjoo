@@ -1,0 +1,9 @@
+-- USER_INFO 테이블에서
+-- 2021년에 가입한 회원 중 
+-- 나이가 20세 이상 29세 이하인
+-- 회원이 몇 명인지 출력
+SELECT SUM(COUNT(USER_ID))
+FROM USER_INFO 
+WHERE TO_CHAR(JOINED, 'YYYY-MM-DD') LIKE '2021%'
+    AND AGE BETWEEN 20 AND 29
+GROUP BY USER_ID ;
