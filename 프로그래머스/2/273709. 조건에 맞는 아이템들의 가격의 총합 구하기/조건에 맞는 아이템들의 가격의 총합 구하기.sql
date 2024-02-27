@@ -1,0 +1,8 @@
+-- ITEM_INFO 테이블에서 
+-- 희귀도가 'LEGEND'인 아이템들의 가격의 총합
+-- 컬럼명은 'TOTAL_PRICE'로 지정해 주세요.
+
+SELECT SUM(PRICE) AS TOTAL_PRICE
+FROM ITEM_INFO 
+WHERE RARITY = 'LEGEND'
+GROUP BY RARITY;
