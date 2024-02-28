@@ -1,0 +1,23 @@
+-- 2022년 1월의 카테고리 별 도서 판매량을 합산하고,
+-- 카테고리(CATEGORY), 총 판매량(TOTAL_SALES) 리스트를 출력하는 SQL문을 작성해주세요.
+-- 결과는 카테고리명을 기준으로 오름차순 정렬해주세요.
+
+-- 2022년 1월 BOOK_ID 별 판매량 테이블 생성
+/*
+SELECT BOOK_ID, SALES
+FROM BOOK_SALES 
+WHERE TO_CHAR(SALES_DATE, 'YYYY-MM-DD') LIKE '2022-01%'
+*/
+
+-- JOIN
+SELECT  B1.CATEGORY,
+        SUM(B2.SALES)
+FROM BOOK B1
+JOIN    (SELECT BOOK_ID, SALES
+        FROM BOOK_SALES 
+        WHERE TO_CHAR(SALES_DATE, 'YYYY-MM-DD') LIKE '2022-01%'
+        ) B2
+    ON
+    B1.BOOK_ID = B2.BOOK_ID
+GROUP BY CATEGORY
+ORDER BY CATEGORY;
